@@ -1,11 +1,10 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-# TODO how could it be started with the normal user? (not root-sudo)
-#if ( pidof com.github.spheras.desktopfolder );then
-#    killall com.github.spheras.desktopfolder
-#fi
-#su $USER -c "/usr/bin/com.github.spheras.desktopfolder &"
-#
-echo "Remember: You'll need to logout/reboot to launch the application."
+userlist=$(users)
+
+for u in "${userlist[@]}"
+do
+    su - $u -c com.github.spheras.desktopfolder &
+done
 
 exit 0
