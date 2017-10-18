@@ -13,6 +13,11 @@ install_data(
 )
 
 install_data(
+    '10_org.pantheon.cerbere.gschema.override',
+    install_dir: join_paths(get_option('datadir'), 'glib-2.0', 'schemas')
+)
+
+install_data(
     meson.project_name() + '.desktop',
     install_dir: '/etc/xdg/autostart'
 )

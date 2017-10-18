@@ -1,0 +1,2 @@
+[org.pantheon.desktop.cerbere]
+monitored-processes=['wingpanel', 'plank', 'com.github.spheras.desktopfolder']
