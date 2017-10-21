@@ -1,6 +1,6 @@
 namespace DesktopFolder.Lang {
     //Application Description
-    public const string APP_DESCRIPTION=_("Come back to life your minimalist Desktop \n Organize files at your Desktop using Panes.");
+    public const string APP_DESCRIPTION=_("Bring your desktop back to life\nOrganize your desktop with panels that hold your things.\n⌘-D - Show Desktop");
     //Generic Dialog OK Button
     public const string DIALOG_OK=_("_Ok");
     //Generic Dialog CANCEL Button
@@ -44,7 +44,7 @@ namespace DesktopFolder.Lang {
     //desktopfolder menu - past from clipboard to the desktop-folder
     public const string DESKTOPFOLDER_MENU_PASTE=_("Paste");
     //desktopfolder menu - show the about dialog
-    //public const string DESKTOPFOLDER_MENU_ABOUT=_("About");
+    public const string DESKTOPFOLDER_MENU_ABOUT=_("About");
     //desktopfolder - Dialog Title for a new Desktop Folder Panel to ask the new name
     public const string DESKTOPFOLDER_NEW=_("New Panel");
     //desktopfolder - Dialog Title Message to rename the current Desktop-Folder
