@@ -1,15 +1,19 @@
-language: c
+language: generic
 
-before_install:
-    - sudo apt-add-repository --yes ppa:vala-team
-    - sudo apt-get update --quiet
-    - sudo apt-get install --yes valac libglib2.0-dev
+services:
+ - docker
+
+env:
+ - DEPENDENCY_PACKAGES="appstream desktop-file-utils valac libglib2.0-dev libgee-0.8-dev libcairo2-dev libjson-glib-dev libgdk-pixbuf2.0-dev libwnck-3-dev libgtksourceview-3.0-dev meson"
+
+install:
+ - docker pull elementary/docker:loki
+ - docker run -v "$PWD":/tmp/build-dir elementary/docker:loki /bin/sh -c "apt-get update && apt-get -y install $DEPENDENCY_PACKAGES && cd /tmp/build-dir && meson build && cd build && meson configure -D vala_args=-g,--debug,--ccode && meson configure -D b_coverage=true && ninja test"
+ - docker pull elementary/docker:loki-unstable
+ - docker run -v "$PWD":/tmp/build-dir elementary/docker:loki-unstable /bin/sh -c "apt-get update && apt-get -y install $DEPENDENCY_PACKAGES && cd /tmp/build-dir && meson build && cd build && meson configure -D vala_args=-g,--debug,--ccode && meson configure -D b_coverage=true && ninja test"
 
 script:
-    - valac --ccode --debug hello.vala
-    - gcc $(pkg-config --cflags glib-2.0 gobject-2.0) -ftest-coverage -fprofile-arcs -o hello hello.c $(pkg-config --libs glib-2.0 gobject-2.0)
-    - ./hello
-    - gcov hello.vala
-
-after_success:
+ - echo BUILDS PASSED
+ 
+ after_success:
     - bash <(curl -s https://codecov.io/bash)
